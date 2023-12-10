@@ -21,12 +21,12 @@ public class assetTest extends BaseTest {
         System.out.println("login successful");
     }
 
-    @Test(dataProviderClass = ReadExcelData.class, dataProvider = "logdata")
+    @Test(dataProviderClass = ReadExcelData.class, dataProvider = "testdata")
     public void LoginTest(String username, String password) throws InterruptedException {
         performLogin(username, password);
     }
 
-    @Test(dataProviderClass = ReadExcelData.class, dataProvider = "logdata", dependsOnMethods = "LoginTest")
+    @Test(dataProviderClass = ReadExcelData.class, dataProvider = "testdata", dependsOnMethods = "LoginTest")
 
         public void AssetTest( String username,String password,String catogory, String name,String assetcode, 
         		              String working,String companyID,String employee,
@@ -46,7 +46,7 @@ public class assetTest extends BaseTest {
         objasset.strworking(working);
         objasset.strcomId(companyID);
         objasset.stremployee(employee);
-        String[] parts = prchaseDate.split("-");
+        String[] parts = prchaseDate.split("/");
         String day = parts[0];
         String month = parts[1];
         String year = parts[2];        
@@ -55,7 +55,7 @@ public class assetTest extends BaseTest {
         objasset.strinvoice(Invoice);
         objasset.strmanu(manufacture);
         objasset.strserielnum(Serielnum);
-        String[] parts1 = warrenty.split("-");
+        String[] parts1 = warrenty.split("/");
         String day1 = parts1[0];
         String month1 = parts1[1];
         String year1 = parts1[2];        

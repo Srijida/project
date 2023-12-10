@@ -18,6 +18,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 
 import Constant.constant;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -27,6 +29,7 @@ public class BaseTest {
     public static Properties prop = new Properties();
   
     @BeforeMethod
+    @Parameters({"browser"})
     public void setUp() throws IOException {
         if (driver == null) {
         	System.out.println("The Path is "+System.getProperty("user.dir"));

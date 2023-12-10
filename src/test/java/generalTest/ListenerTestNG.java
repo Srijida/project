@@ -1,5 +1,6 @@
 package generalTest;
 
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
@@ -10,31 +11,35 @@ import com.aventstack.extentreports.Status;
 import testcase.BaseTest;
 import utilities.ExtentUtility;
 
-public class Listener extends BaseTest implements ITestListener {
-	ExtentUtility ext;
+public class ListenerTestNG extends BaseTest implements ITestListener {
     ExtentTest test;
-    ExtentReports extent = ext.createextentreport();
-    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
+    ExtentReports extent = ExtentUtility.createextentreport();
+
     @Override
     public void onTestStart(ITestResult result) {
-        ITestListener.super.onTestStart(result);
         test = extent.createTest(result.getMethod().getMethodName());
-        extentTest.set(test);
-    }
-    @Override
-    public void onTestSuccess(ITestResult result) {
-        ITestListener.super.onTestSuccess(result);
-        extentTest.get().log(Status.PASS, "Test Passed");
-    }
-    @Override
-    public void onTestFailure(ITestResult result) {
-        ITestListener.super.onTestFailure(result);
-        extentTest.get().log(Status.FAIL, "Test Failed");
-    }
-    @Override
-    public void onTestSkipped(ITestResult result) {
-        ITestListener.super.onTestSkipped(result);
-        extentTest.get().log(Status.SKIP, "Test Skipped");
+        test.info("Started");
     }
 
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        test.log(Status.PASS, "Test Passed");
+        test.pass(result.getName());
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+        test.log(Status.FAIL, "Test Failed");
+        test.fail(result.getName());
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        test.log(Status.SKIP, "Test Skipped");
+        test.skip("Test Skipped");
+    }
+
+    public void onTestFinish(ITestContext context) {
+        extent.flush();
+    }
 }

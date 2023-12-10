@@ -156,6 +156,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     			        alert.sendKeys(text);
     			        alert.accept();
     			    }
+//    			    public void enterDate(WebElement element,String day, String month, String year) {
+//    			    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//    			        element.click();      
+//    			        System.out.println(day+"-"+ month+"-"+ year);
+//    			        List<WebElement> allDates = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+//    			                By.xpath("//table[@class='ui-datepicker-calendar']//tbody//td")));
+//    			        
+//    			        for (WebElement date : allDates) {
+//    			            if (date.getText().equals(day)) {
+//    			                wait.until(ExpectedConditions.elementToBeClickable(date)).click();
+//    			                break;
+//    			            }
+//    			        }
+//    			    }
     			    public void enterDate(WebElement element,String day, String month, String year) {
     			    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     			        element.click();      
@@ -170,6 +184,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     			            }
     			        }
     			    }
+
     			    public void mouseHoverAndClickonElement(WebElement element){
     			        Actions action=new Actions(driver);
     			        action.moveToElement(element).click().build().perform();

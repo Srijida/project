@@ -116,8 +116,9 @@ public class assetsPage {
 	      elementutility.selectDrpdown(employeeId, value);
 	  } 
 	  public void setpurDate(String day, String month, String year) {
-		 WaitUtility.waitForElementToBeClickable(driver, purchasedate);
+		
 	       elementutility.enterDate(purchasedate, day, month, year);
+	       WaitUtility.waitForElementToBeClickable(driver, purchasedate);
 	  
 	     }
 	  public void strinvoice(String name) {

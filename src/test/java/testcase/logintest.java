@@ -1,10 +1,11 @@
 package testcase;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import utilities.ReadExcelData;
 import Pages.loginPage;
-
+@Listeners(generalTest.ListenerTestNG.class)
 public class logintest extends BaseTest {
     loginPage objLogin;
    
